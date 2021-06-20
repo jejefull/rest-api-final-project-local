@@ -1,0 +1,128 @@
+
+USE [FLIGHTS]
+GO
+/****** Object:  Table [dbo].[COUNTRIES]    Script Date: 01/01/2021 12:09:43 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[COUNTRIES](
+	[code_al] [int] IDENTITY(1,1) NOT NULL,
+	[name] [varchar](50) NULL,
+ CONSTRAINT [PK_COUNTRIES] PRIMARY KEY CLUSTERED 
+(
+	[code_al] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[FLIGHTS]    Script Date: 01/01/2021 12:09:43 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[FLIGHTS](
+	[flight_id] [int] IDENTITY(1,1) NOT NULL,
+	[timestamp] [datetime] NULL,
+	[remaining_seats] [int] NULL,
+	[origin_country_id] [int] NULL,
+	[dest_country_id] [int] NULL,
+ CONSTRAINT [PK_FLIGHTS] PRIMARY KEY CLUSTERED 
+(
+	[flight_id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[TICKETS]    Script Date: 01/01/2021 12:09:43 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[TICKETS](
+	[ticket_id] [int] IDENTITY(1,1) NOT NULL,
+	[user_id] [int] NULL,
+	[flight_id] [int] NULL,
+ CONSTRAINT [PK_TICKETS] PRIMARY KEY CLUSTERED 
+(
+	[ticket_id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[USERS]    Script Date: 01/01/2021 12:09:43 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[USERS](
+	[id_Al] [int] IDENTITY(1,1) NOT NULL,
+	[full_name] [varchar](50) NULL,
+	[password] [varchar](50) NULL,
+	[real_id] [varchar](50) NULL,
+ CONSTRAINT [PK_USERS] PRIMARY KEY CLUSTERED 
+(
+	[id_Al] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET IDENTITY_INSERT [dbo].[COUNTRIES] ON 
+
+INSERT [dbo].[COUNTRIES] ([code_al], [name]) VALUES (1, N'ISRAEL')
+INSERT [dbo].[COUNTRIES] ([code_al], [name]) VALUES (2, N'USA')
+INSERT [dbo].[COUNTRIES] ([code_al], [name]) VALUES (3, N'FRANCE')
+INSERT [dbo].[COUNTRIES] ([code_al], [name]) VALUES (4, N'SPAIN')
+INSERT [dbo].[COUNTRIES] ([code_al], [name]) VALUES (5, N'TOKYO')
+INSERT [dbo].[COUNTRIES] ([code_al], [name]) VALUES (6, N'CANADA')
+SET IDENTITY_INSERT [dbo].[COUNTRIES] OFF
+GO
+SET IDENTITY_INSERT [dbo].[FLIGHTS] ON 
+
+INSERT [dbo].[FLIGHTS] ([flight_id], [timestamp], [remaining_seats], [origin_country_id], [dest_country_id]) VALUES (1, CAST(N'2020-12-03T21:43:01.000' AS DateTime), 0, 1, 2)
+INSERT [dbo].[FLIGHTS] ([flight_id], [timestamp], [remaining_seats], [origin_country_id], [dest_country_id]) VALUES (2, CAST(N'2020-12-19T08:43:01.000' AS DateTime), 2, 3, 4)
+INSERT [dbo].[FLIGHTS] ([flight_id], [timestamp], [remaining_seats], [origin_country_id], [dest_country_id]) VALUES (3, CAST(N'2020-12-20T09:43:01.000' AS DateTime), 2, 2, 5)
+SET IDENTITY_INSERT [dbo].[FLIGHTS] OFF
+GO
+SET IDENTITY_INSERT [dbo].[TICKETS] ON 
+
+INSERT [dbo].[TICKETS] ([ticket_id], [user_id], [flight_id]) VALUES (1, 1, 1)
+INSERT [dbo].[TICKETS] ([ticket_id], [user_id], [flight_id]) VALUES (6, 1, 1)
+INSERT [dbo].[TICKETS] ([ticket_id], [user_id], [flight_id]) VALUES (24, 70, 3)
+INSERT [dbo].[TICKETS] ([ticket_id], [user_id], [flight_id]) VALUES (25, 70, 3)
+INSERT [dbo].[TICKETS] ([ticket_id], [user_id], [flight_id]) VALUES (1007, 70, 2)
+SET IDENTITY_INSERT [dbo].[TICKETS] OFF
+GO
+SET IDENTITY_INSERT [dbo].[USERS] ON 
+
+INSERT [dbo].[USERS] ([id_Al], [full_name], [password], [real_id]) VALUES (1, N'jejeeefull', N'3050', N'999999999')
+INSERT [dbo].[USERS] ([id_Al], [full_name], [password], [real_id]) VALUES (52, N'JEJEFULL', N'123', N'222222222')
+INSERT [dbo].[USERS] ([id_Al], [full_name], [password], [real_id]) VALUES (53, N'JEJEJE', N'1234', N'444444444')
+INSERT [dbo].[USERS] ([id_Al], [full_name], [password], [real_id]) VALUES (60, N'FULLLL', N'JEJE', N'123123456')
+INSERT [dbo].[USERS] ([id_Al], [full_name], [password], [real_id]) VALUES (70, N'jejefull', N'FULL', N'111111111')
+INSERT [dbo].[USERS] ([id_Al], [full_name], [password], [real_id]) VALUES (72, N'fufu', N'FULL', N'333333333')
+INSERT [dbo].[USERS] ([id_Al], [full_name], [password], [real_id]) VALUES (73, N'full', N'ft', N'555555555')
+INSERT [dbo].[USERS] ([id_Al], [full_name], [password], [real_id]) VALUES (74, N'full', N'rt', N'777777777')
+SET IDENTITY_INSERT [dbo].[USERS] OFF
+GO
+ALTER TABLE [dbo].[FLIGHTS]  WITH CHECK ADD  CONSTRAINT [FK_FLIGHTS_COUNTRIES_DEST] FOREIGN KEY([dest_country_id])
+REFERENCES [dbo].[COUNTRIES] ([code_al])
+GO
+ALTER TABLE [dbo].[FLIGHTS] CHECK CONSTRAINT [FK_FLIGHTS_COUNTRIES_DEST]
+GO
+ALTER TABLE [dbo].[FLIGHTS]  WITH CHECK ADD  CONSTRAINT [FK_FLIGHTS_COUNTRIES_ORIGIN] FOREIGN KEY([origin_country_id])
+REFERENCES [dbo].[COUNTRIES] ([code_al])
+GO
+ALTER TABLE [dbo].[FLIGHTS] CHECK CONSTRAINT [FK_FLIGHTS_COUNTRIES_ORIGIN]
+GO
+ALTER TABLE [dbo].[TICKETS]  WITH CHECK ADD  CONSTRAINT [FK_TICKETS_FLIGHTS] FOREIGN KEY([flight_id])
+REFERENCES [dbo].[FLIGHTS] ([flight_id])
+GO
+ALTER TABLE [dbo].[TICKETS] CHECK CONSTRAINT [FK_TICKETS_FLIGHTS]
+GO
+ALTER TABLE [dbo].[TICKETS]  WITH CHECK ADD  CONSTRAINT [FK_TICKETS_USERS] FOREIGN KEY([user_id])
+REFERENCES [dbo].[USERS] ([id_Al])
+GO
+ALTER TABLE [dbo].[TICKETS] CHECK CONSTRAINT [FK_TICKETS_USERS]
+GO
+ALTER TABLE [dbo].[USERS]  WITH CHECK ADD  CONSTRAINT [FK_USERS_USERS] FOREIGN KEY([id_Al])
+REFERENCES [dbo].[USERS] ([id_Al])
+GO
+ALTER TABLE [dbo].[USERS] CHECK CONSTRAINT [FK_USERS_USERS]
+GO
